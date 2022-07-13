@@ -1,0 +1,90 @@
+<form class="reactiveForm"  [formGroup]="regForm" (ngSubmit)="register()">
+    <div style="margin-left: 50px;" class="example-container">
+    <br>
+    <br>
+    <table class="styled-table">
+        <thead>
+        <tr>         
+            <th>Registration</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            
+        <tr>
+            <th>First Name</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="firstName" required>
+                    <mat-error *ngIf="regForm.controls.firstName.touched && regForm.controls.firstName.invalid">
+                        <span *ngIf="regForm.controls.firstName.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="lastName" required>
+                    <mat-error *ngIf="regForm.controls.lastName.touched && regForm.controls.lastName.invalid">
+                        <span *ngIf="regForm.controls.lastName.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="regForm.controls.email.touched && regForm.controls.email.invalid">
+                        <span *ngIf="regForm.controls.email.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <th>Password</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input type="password" matInput formControlName="password" required>
+                    <mat-error *ngIf="regForm.controls.password.touched && regForm.controls.password.invalid">
+                        <span *ngIf="regForm.controls.password.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Repeat Password</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input type="password" matInput formControlName="repeatedPass" required>
+                    <mat-error *ngIf="regForm.controls.repeatedPass.touched && regForm.controls.repeatedPass.invalid">
+                        <span *ngIf="regForm.controls.repeatedPass.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+       
+        <tr>
+            <td></td>
+            <td>
+                <mat-dialog-actions >
+                    <button id="ticketSubmit" style="width: 250px; height: 50px; display: block; margin-left: auto; margin-right: auto; "  type="submit" mat-raised-button color="success" >Sing up</button>
+                </mat-dialog-actions>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+    <br><br>
+    </div>
+</form>

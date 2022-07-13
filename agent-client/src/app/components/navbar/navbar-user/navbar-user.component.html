@@ -1,0 +1,13 @@
+<mat-toolbar class="flexSpaceBetween">
+	<div>
+		<a  id="home" [routerLink]="['/']">
+			<mat-icon class="material-icons"  inline="true" >home</mat-icon>
+		</a>
+	</div>
+	<span>
+		<button id="login" mat-button [routerLink]="['/project']" > Projects </button>
+        <button id="login" mat-button [routerLink]="['/gitrepo']" > GitRepo </button>
+        <button id="login" mat-button [routerLink]="['/milestone']" > Milestone </button>
+		<button id="register" mat-button (click)="signOut()" > Sign out </button>
+	</span>
+</mat-toolbar>
