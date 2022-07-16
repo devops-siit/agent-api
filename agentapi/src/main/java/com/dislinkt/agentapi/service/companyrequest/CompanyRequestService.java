@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dislinkt.agentapi.domain.account.Account;
-import com.dislinkt.agentapi.domain.companyrequest.CompanyRequest;
+import com.dislinkt.agentapi.domain.company.request.CompanyRequest;
 import com.dislinkt.agentapi.exception.types.EntityNotFoundException;
 import com.dislinkt.agentapi.repository.CompanyRequestRepository;
 import com.dislinkt.agentapi.service.account.AccountService;

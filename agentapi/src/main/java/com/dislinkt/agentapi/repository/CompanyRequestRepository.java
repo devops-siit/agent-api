@@ -3,7 +3,7 @@ package com.dislinkt.agentapi.repository;
 import org.springframework.stereotype.Repository;
 
 import com.dislinkt.agentapi.domain.company.Company;
-import com.dislinkt.agentapi.domain.companyrequest.CompanyRequest;
+import com.dislinkt.agentapi.domain.company.request.CompanyRequest;
 
 import java.util.Optional;
 

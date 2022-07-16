@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.web.rest.companycomment.payload.request;
+package com.dislinkt.agentapi.web.rest.comment.payload.request;
 
 import lombok.Data;
 

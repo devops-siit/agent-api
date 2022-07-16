@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.dislinkt.agentapi.domain.account.Account;
 import com.dislinkt.agentapi.domain.company.Company;
-import com.dislinkt.agentapi.domain.companycomment.CompanyComment;
+import com.dislinkt.agentapi.domain.company.comment.Comment;
 import com.dislinkt.agentapi.domain.rate.Rate;
 import com.dislinkt.agentapi.repository.RateRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
 import com.dislinkt.agentapi.service.company.CompanyService;
 import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
+import com.dislinkt.agentapi.web.rest.comment.payload.CommentDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.CompanyDTO;
-import com.dislinkt.agentapi.web.rest.companycomment.payload.CompanyCommentDTO;
 import com.dislinkt.agentapi.web.rest.rate.payload.NewRateRequest;
 import com.dislinkt.agentapi.web.rest.rate.payload.RateDTO;
 import com.dislinkt.agentapi.exception.types.EntityAlreadyExistsException;

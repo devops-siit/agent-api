@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.web.rest.companycomment;
+package com.dislinkt.agentapi.web.rest.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dislinkt.agentapi.service.companycomment.CompanyCommentService;
+import com.dislinkt.agentapi.service.comment.CommentService;
 import com.dislinkt.agentapi.util.ReturnResponse;
-import com.dislinkt.agentapi.web.rest.companycomment.payload.CompanyCommentDTO;
-import com.dislinkt.agentapi.web.rest.companycomment.payload.request.NewCommentRequest;
+import com.dislinkt.agentapi.web.rest.comment.payload.CommentDTO;
+import com.dislinkt.agentapi.web.rest.comment.payload.request.NewCommentRequest;
 
 @RestController
 @RequestMapping("/company-comment")
-public class CompanyCommentResource {
+public class CommentResource {
 
 	@Autowired
-	private CompanyCommentService companyCommentService;
+	private CommentService companyCommentService;
 	
 	@GetMapping("/{companyUuid}")
-    public ResponseEntity<Page<CompanyCommentDTO>> findByPost(@PathVariable String companyUuid, Pageable pageable) {
+    public ResponseEntity<Page<CommentDTO>> findByPost(@PathVariable String companyUuid, Pageable pageable) {
         return ReturnResponse.entityGet(companyCommentService.findByCompany(companyUuid, pageable));
     }
 
     @PostMapping
-    public ResponseEntity<CompanyCommentDTO> insertComment(@RequestParam String loggedAccountUuid,
+    public ResponseEntity<CommentDTO> insertComment(@RequestParam String loggedAccountUuid,
                                                     @RequestBody NewCommentRequest commentRequest) {
         return ReturnResponse.entityGet(companyCommentService.insertComment(loggedAccountUuid, commentRequest));
     }

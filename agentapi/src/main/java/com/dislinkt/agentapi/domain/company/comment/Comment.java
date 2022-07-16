@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.domain.companycomment;
+package com.dislinkt.agentapi.domain.company.comment;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class CompanyComment extends BaseEntity{
+public class Comment extends BaseEntity{
 
 	@NotNull
     @Size(max = 36)

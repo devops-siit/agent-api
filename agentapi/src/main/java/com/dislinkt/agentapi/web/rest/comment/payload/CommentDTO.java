@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.web.rest.companycomment.payload;
+package com.dislinkt.agentapi.web.rest.comment.payload;
 
 import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.base.BaseDTO;
@@ -6,7 +6,7 @@ import com.dislinkt.agentapi.web.rest.base.BaseDTO;
 import lombok.Data;
 
 @Data
-public class CompanyCommentDTO extends BaseDTO  {
+public class CommentDTO extends BaseDTO  {
 	
     private String text;
 

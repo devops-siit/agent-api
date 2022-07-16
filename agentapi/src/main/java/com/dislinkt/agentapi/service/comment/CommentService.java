@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.service.companycomment;
+package com.dislinkt.agentapi.service.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,19 +7,19 @@ import org.springframework.data.domain.Pageable;
 
 import com.dislinkt.agentapi.domain.account.Account;
 import com.dislinkt.agentapi.domain.company.Company;
-import com.dislinkt.agentapi.domain.companycomment.CompanyComment;
-import com.dislinkt.agentapi.repository.CompanyCommentRepository;
+import com.dislinkt.agentapi.domain.company.comment.Comment;
+import com.dislinkt.agentapi.repository.CommentRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
 import com.dislinkt.agentapi.service.company.CompanyService;
 import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
-import com.dislinkt.agentapi.web.rest.companycomment.payload.CompanyCommentDTO;
-import com.dislinkt.agentapi.web.rest.companycomment.payload.request.NewCommentRequest;
+import com.dislinkt.agentapi.web.rest.comment.payload.CommentDTO;
+import com.dislinkt.agentapi.web.rest.comment.payload.request.NewCommentRequest;
 
 @Service
-public class CompanyCommentService {
+public class CommentService {
 
 	@Autowired
-	private CompanyCommentRepository repository;
+	private CommentRepository repository;
 	
 	@Autowired
 	private AccountService accountService;
@@ -28,14 +28,14 @@ public class CompanyCommentService {
 	private CompanyService companyService;
 	
 	
-	public Page<CompanyCommentDTO> findByCompany(String companyUuid, Pageable pageable) {
+	public Page<CommentDTO> findByCompany(String companyUuid, Pageable pageable) {
 
 		Company company = companyService.findOneByUuidOrElseThrowException(companyUuid);
 		
-        Page<CompanyComment> comments = repository.findByCompanyId(company.getId(), pageable);
+        Page<Comment> comments = repository.findByCompanyId(company.getId(), pageable);
 
         return comments.map(comment -> {
-            CompanyCommentDTO dto = new CompanyCommentDTO();
+            CommentDTO dto = new CommentDTO();
 
             dto.setText(comment.getText());
             dto.setUuid(comment.getUuid());
@@ -51,13 +51,13 @@ public class CompanyCommentService {
         });
     }
 	
-	public CompanyCommentDTO insertComment(String loggedAccountUuid, NewCommentRequest commentRequest) {
+	public CommentDTO insertComment(String loggedAccountUuid, NewCommentRequest commentRequest) {
 
         Company company = companyService.findOneByUuidOrElseThrowException(commentRequest.getCompanyUuid());
 
         Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
 
-        CompanyComment comment = new CompanyComment();
+        Comment comment = new Comment();
 
         comment.setText(commentRequest.getText());
         comment.setCompany(company);;
@@ -65,7 +65,7 @@ public class CompanyCommentService {
 
         repository.save(comment);
 
-        CompanyCommentDTO dto = new CompanyCommentDTO();
+        CommentDTO dto = new CommentDTO();
 
         dto.setText(comment.getText());
         dto.setUuid(comment.getUuid());

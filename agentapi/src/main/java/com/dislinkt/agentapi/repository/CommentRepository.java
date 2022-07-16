@@ -5,11 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dislinkt.agentapi.domain.companycomment.CompanyComment;
+import com.dislinkt.agentapi.domain.company.comment.Comment;
 
 @Repository
-public interface CompanyCommentRepository extends JpaRepository<CompanyComment, Long>{
+public interface CommentRepository extends JpaRepository<Comment, Long>{
 
-	Page<CompanyComment> findByCompanyId(Long id, Pageable pageable);
+	Page<Comment> findByCompanyId(Long id, Pageable pageable);
 
 }

@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.domain.companyrequest;
+package com.dislinkt.agentapi.domain.company.request;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
