@@ -47,6 +47,12 @@ public class CompanyRequestService {
 		reqDTO.setDescription(newReq.getDescription());
 		reqDTO.setPhone(newReq.getPhone());
 		reqDTO.setRequestStatus(newReq.getRequestStatus());
+		reqDTO.setUuid(newReq.getUuid());
+		AccountDTO acc = new AccountDTO();
+		acc.setName(newReq.getOwner().getName());
+		acc.setUsername(newReq.getOwner().getUsername());
+		acc.setUuid(newReq.getOwner().getUuid());
+		reqDTO.setOwner(acc);
 		
 		
 		return reqDTO;
@@ -65,6 +71,13 @@ public class CompanyRequestService {
 		reqDTO.setDescription(req.getDescription());
 		reqDTO.setPhone(req.getPhone());
 		reqDTO.setRequestStatus(req.getRequestStatus());
+		reqDTO.setUuid(req.getUuid());
+
+		AccountDTO acc = new AccountDTO();
+		acc.setName(req.getOwner().getName());
+		acc.setUsername(req.getOwner().getUsername());
+		acc.setUuid(req.getOwner().getUuid());
+		reqDTO.setOwner(acc);
 		
 		return reqDTO;
 	}
@@ -82,6 +95,13 @@ public class CompanyRequestService {
 		reqDTO.setDescription(req.getDescription());
 		reqDTO.setPhone(req.getPhone());
 		reqDTO.setRequestStatus(req.getRequestStatus());
+		reqDTO.setUuid(req.getUuid());
+
+		AccountDTO acc = new AccountDTO();
+		acc.setName(req.getOwner().getName());
+		acc.setUsername(req.getOwner().getUsername());
+		acc.setUuid(req.getOwner().getUuid());
+		reqDTO.setOwner(acc);
 		
 		return reqDTO;
 	}

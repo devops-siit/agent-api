@@ -28,7 +28,7 @@ public class Company extends BaseEntity {
     private String address;
     
     @NotNull
-    @Size(max = 128)
+    @Size(max = 25)
     @Column(unique = false)
     private String phone;
     
