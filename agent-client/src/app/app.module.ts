@@ -13,12 +13,14 @@ import { NavbarNonAuthComponent } from './components/navbar/navbar-non-auth/navb
 import { NavbarUserComponent } from './components/navbar/navbar-user/navbar-user.component';
 import { SharedModule } from './components/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CompanyRequestComponent } from './components/company/company-request/company-request.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarNonAuthComponent,
-    NavbarUserComponent
+    NavbarUserComponent,
+    CompanyRequestComponent
   ],
   imports: [
     AppRoutingModule,
