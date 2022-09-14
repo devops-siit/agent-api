@@ -1,5 +1,7 @@
 package com.dislinkt.agentapi.domain.company.request;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +12,14 @@ import javax.validation.constraints.Size;
 
 import com.dislinkt.agentapi.domain.account.Account;
 import com.dislinkt.agentapi.domain.base.BaseEntity;
+import com.dislinkt.agentapi.domain.rate.Rate;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class CompanyRequest extends BaseEntity {
 

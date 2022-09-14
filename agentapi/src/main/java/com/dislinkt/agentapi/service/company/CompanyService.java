@@ -60,13 +60,15 @@ public class CompanyService {
 		simpleCompanyDTO.setUuid(company.getUuid());
 		
 		HttpEntity<SimpleCompanyDTO> companyRequest = new HttpEntity<>(simpleCompanyDTO);
-
+		
+		/*
         ResponseEntity<SimpleCompanyDTO> responseFromOffers =
                 restTemplate.exchange("http://offers-api:8083/companies",
                         HttpMethod.POST,
                         companyRequest,
                         SimpleCompanyDTO.class);
-        
+         */
+		
 		CompanyDTO dto = new CompanyDTO();
 		dto.setName(reqDTO.getName());
 		dto.setAddress(reqDTO.getAddress());
