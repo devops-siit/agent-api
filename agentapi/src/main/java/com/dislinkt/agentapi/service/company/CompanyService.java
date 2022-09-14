@@ -2,10 +2,10 @@ package com.dislinkt.agentapi.service.company;
 
 import java.util.Optional;
 
+import com.dislinkt.agentapi.event.CompanyRegistrationSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +21,7 @@ import com.dislinkt.agentapi.web.rest.company.payload.SimpleCompanyDTO;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
 
 @Service
+@EnableBinding(CompanyRegistrationSource.class)
 public class CompanyService {
 
 	@Autowired
@@ -31,6 +32,9 @@ public class CompanyService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+
+	@Autowired
+	CompanyRegistrationSource companyRegistrationSource;
 	
     @PostMapping
 	public CompanyDTO insertCompany(CompanyRequestDTO reqDTO) {
@@ -58,16 +62,15 @@ public class CompanyService {
 		simpleCompanyDTO.setAddress(company.getAddress());
 		simpleCompanyDTO.setDescription(company.getDescription());
 		simpleCompanyDTO.setUuid(company.getUuid());
-		
-		HttpEntity<SimpleCompanyDTO> companyRequest = new HttpEntity<>(simpleCompanyDTO);
-		
-		/*
-        ResponseEntity<SimpleCompanyDTO> responseFromOffers =
-                restTemplate.exchange("http://offers-api:8083/companies",
-                        HttpMethod.POST,
-                        companyRequest,
-                        SimpleCompanyDTO.class);
-         */
+
+		SimpleCompanyDTO event = new SimpleCompanyDTO();
+		event.setUuid(company.getUuid());
+		event.setName(company.getName());
+		event.setAddress(company.getAddress());
+		event.setPhone(company.getPhone());
+		event.setDescription(company.getDescription());
+
+		companyRegistrationSource.companyRegistration().send(MessageBuilder.withPayload(event).build());
 		
 		CompanyDTO dto = new CompanyDTO();
 		dto.setName(reqDTO.getName());

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8089
 spring:
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/agent-db?createDatabaseIfNotExist=true
@@ -17,6 +17,7 @@ spring:
   cloud:
     stream:
       bindings:
-        input:
-          destination: accountRegistrations
-          group: accountRegistrationAccountsQueue
+        companyRegistrationChannel:
+          destination: companyRegistrations
+      default:
+        contentType: application/json
