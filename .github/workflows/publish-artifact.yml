@@ -18,6 +18,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Publish artifact on GitHub Packages
+        working-directory: agentapi
         run: mvn -B -P dev clean deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
