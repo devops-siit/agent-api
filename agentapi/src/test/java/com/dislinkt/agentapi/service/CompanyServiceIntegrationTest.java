@@ -4,22 +4,30 @@ import static com.dislinkt.agentapi.constants.CompanyConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import com.dislinkt.agentapi.domain.company.Company;
+import com.dislinkt.agentapi.event.CompanyRegistrationSource;
 import com.dislinkt.agentapi.service.company.CompanyService;
 import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.CompanyDTO;
+import com.dislinkt.agentapi.web.rest.companyrequest.CompanyRequestResource;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
 
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -33,7 +41,25 @@ import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
 public class CompanyServiceIntegrationTest {
 
 	@Autowired
+	@InjectMocks
 	private CompanyService service;
+	
+	@Mock
+	private CompanyRegistrationSource companyRegistrationSource;
+	
+	@BeforeAll
+	public void initMocks() {
+
+		MockitoAnnotations.initMocks(this);
+		Mockito.when(companyRegistrationSource.companyRegistration()).thenReturn(new MessageChannel() {
+			
+			@Override
+			public boolean send(Message<?> message, long timeout) {
+				
+				return false;
+			}
+		}); 
+	}
 	
 	@Test
 	public void testInsertCompany() {
