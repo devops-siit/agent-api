@@ -94,7 +94,7 @@
 		<repository>
 			<id>github</id>
 			<name>agent-api</name>
-			<url>https://maven.pkg.github.com/devops-siit/agentapi</url>
+			<url>https://maven.pkg.github.com/devops-siit/agent</url>
 		</repository>
 	</distributionManagement>
 	<profiles>
