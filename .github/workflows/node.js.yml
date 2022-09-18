@@ -20,7 +20,8 @@ jobs:
         node-version: 16.x
         cache: 'npm'
         cache-dependency-path: agent-client/package-lock.json
-    - name: Build & Test
+    - name: Install dependencies
+      working-directory: agent-client
       run: npm ci
     - name: Build
       run: npm run build --if-present
