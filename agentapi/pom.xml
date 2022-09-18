@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.dislinkt</groupId>
 	<artifactId>agentapi</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>agentapi</name>
 	<description>Agent api for dislinkt application</description>
 	<properties>
@@ -90,7 +90,13 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>agent-api</name>
+			<url>https://maven.pkg.github.com/devops-siit/agent-api</url>
+		</repository>
+	</distributionManagement>
 	<profiles>
 		<profile>
 			<id>dev</id>
