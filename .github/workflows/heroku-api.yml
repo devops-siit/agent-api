@@ -22,3 +22,5 @@ jobs:
           heroku_email: quadrition@gmail.com
           appdir: agentapi
           usedocker: true
+          branch: dev
+          dontuseforce: false
