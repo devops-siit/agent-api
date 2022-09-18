@@ -6,4 +6,4 @@ RUN --mount=type=cache,target=/root/.m2 mvn -f /pom.xml -P dev clean package -Ds
 FROM openjdk:18-oracle
 COPY --from=build target/*.jar /agentapi.jar
 EXPOSE 8089
-ENTRYPOINT ["java", "-jar", "/agentapi.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/agentapi.jar"]
