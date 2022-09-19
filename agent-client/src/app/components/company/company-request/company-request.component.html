@@ -1,0 +1,80 @@
+<form class="reactiveForm"  [formGroup]="reqForm" (ngSubmit)="createReq()">
+    <div style="margin-left: 50px;" class="example-container">
+    <br>
+    <br>
+    <table class="styled-table">
+        <thead>
+        <tr>         
+            <th>Company Request</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            
+        <tr>
+            <th>Company Name</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input placeholder="Best Company..." matInput formControlName="name" required>
+                    <mat-error *ngIf="reqForm.controls.name.touched && reqForm.controls.name.invalid">
+                        <span *ngIf="reqForm.controls.name.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input placeholder="+381 255 552" matInput formControlName="phone" required>
+                    <mat-error *ngIf="reqForm.controls.phone.touched && reqForm.controls.phone.invalid">
+                        <span *ngIf="reqForm.controls.phone.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input matInput placeholder="Save Kovacevica 5..." formControlName="address" required>
+                    <mat-error *ngIf="reqForm.controls.address.touched && reqForm.controls.address.invalid">
+                        <span *ngIf="reqForm.controls.address.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <th>Description</th>
+            <th>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <textarea matInput placeholder="About company..." formControlName="description" required></textarea>
+                    <mat-error *ngIf="reqForm.controls.description.touched && reqForm.controls.description.invalid">
+                        <span *ngIf="reqForm.controls.description.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                  </mat-form-field>
+                
+            </th>
+            <th></th>
+        </tr>
+        
+       
+        <tr>
+            <td></td>
+            <td>
+                <mat-dialog-actions >
+                    <button id="ticketSubmit" style="width: 250px; height: 50px; display: block; margin-left: auto; margin-right: auto; "  type="submit" mat-raised-button color="success" >Send</button>
+                </mat-dialog-actions>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+    <br><br>
+    </div>
+</form>
