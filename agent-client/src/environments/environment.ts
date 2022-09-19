@@ -10,6 +10,9 @@ export const environment = {
   signUp: 'register',
   signOut: 'sign-out',
   changePassword: 'auth/change-password',
+  agentUrl: 'http://localhost:8089',
+  companyReq: 'company-request',
+  authUrl: 'http://localhost:8181',
 
   user: 'api/user'
 };

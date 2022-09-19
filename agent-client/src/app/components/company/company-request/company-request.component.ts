@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { ToastrService } from 'ngx-toastr';
+import { CompanyService } from 'src/app/services/company/company.service';
 
 
 
@@ -12,14 +13,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CompanyRequestComponent implements OnInit {
   reqForm!: FormGroup;
+  currentUser: any = {"uuid": "", "username": ""};
 
 
   constructor(  private fb: FormBuilder,
     private authService: AuthenticationService,
+    private companyService: CompanyService,
     private toastr: ToastrService,) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.authService.validateToken().subscribe(
+      res=>{
+        this.currentUser = res.body;
+        })
 
   }
   createForm() : void{
@@ -39,12 +46,12 @@ export class CompanyRequestComponent implements OnInit {
       address: this.reqForm.get('address')?.value,
       description: this.reqForm.get('description')?.value,
     }
-    // this.companyService.request(data).subscribe(
-    //   res => {
-    //     this.toastr.success("You can now login!");
+     this.companyService.request(data).subscribe(
+       res => {
+         this.toastr.success("Request sent");
 
-    //   }
-    // )
+       }
+     )
 
   }
 
