@@ -13,28 +13,38 @@
     <tbody>
             
         <tr>
-            <th>First Name</th>
+            <th>Name</th>
             <th>
                 <mat-form-field appearance="fill">
-                    <input matInput formControlName="firstName" required>
-                    <mat-error *ngIf="regForm.controls.firstName.touched && regForm.controls.firstName.invalid">
-                        <span *ngIf="regForm.controls.firstName.errors?.required">This field is mandatory.</span>
+                    <input matInput formControlName="name" required>
+                    <mat-error *ngIf="regForm.controls.name.touched && regForm.controls.name.invalid">
+                        <span *ngIf="regForm.controls.name.errors?.required">This field is mandatory.</span>
                     </mat-error>
                 </mat-form-field>
             </th>
             <th></th>
         </tr>
         <tr>
-            <th>Last Name</th>
+            <th>Phone</th>
             <th>
                 <mat-form-field appearance="fill">
-                    <input matInput formControlName="lastName" required>
-                    <mat-error *ngIf="regForm.controls.lastName.touched && regForm.controls.lastName.invalid">
-                        <span *ngIf="regForm.controls.lastName.errors?.required">This field is mandatory.</span>
+                    <input matInput formControlName="phone" required>
+                    <mat-error *ngIf="regForm.controls.phone.touched && regForm.controls.phone.invalid">
+                        <span *ngIf="regForm.controls.phone.errors?.required">This field is mandatory.</span>
                     </mat-error>
                 </mat-form-field>
             </th>
             <th></th>
+        </tr>
+        <tr><th>Gender</th>
+            <th>
+            <mat-form-field appearance="fill">
+                <select formControlName="gender" matNativeControl required>
+                  <option value="FEMALE">Female</option>
+                  <option value="MALE">Male</option>
+                </select>
+              </mat-form-field>
+              </th>
         </tr>
         <tr>
             <th>Email</th>
@@ -43,6 +53,19 @@
                     <input matInput formControlName="email" required>
                     <mat-error *ngIf="regForm.controls.email.touched && regForm.controls.email.invalid">
                         <span *ngIf="regForm.controls.email.errors?.required">This field is mandatory.</span>
+                    </mat-error>
+                </mat-form-field>
+            </th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <th>Username</th>
+            <th>
+                <mat-form-field appearance="fill">
+                    <input matInput formControlName="username" required>
+                    <mat-error *ngIf="regForm.controls.username.touched && regForm.controls.username.invalid">
+                        <span *ngIf="regForm.controls.username.errors?.required">This field is mandatory.</span>
                     </mat-error>
                 </mat-form-field>
             </th>

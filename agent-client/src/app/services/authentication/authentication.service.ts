@@ -15,7 +15,7 @@ export class AuthenticationService {
     ) { }
 
     login(auth: any): Observable<any> {
-        return this.http.post(`${environment.baseUrl}/${environment.login}`,
+        return this.http.post(`${environment.authUrl}/${environment.login}`,
          {username: auth.username, password: auth.password}, {headers: this.headers, responseType: 'json'});
     }
 
@@ -26,8 +26,13 @@ export class AuthenticationService {
         return true;
     }
 
-    register(user: User): Observable<any> {
-        return this.http.post(`${environment.baseUrl}/${environment.signUp}`, user, {headers: this.headers, responseType: 'json'});
+    register(data: any): Observable<any> {
+        console.log("Dataa reg")
+        console.log(data)
+        console.log("Dataa name")
+        console.log(data.gender)
+        return this.http.post(`${environment.authUrl}/${environment.signUp}`, {name: data.name,
+			phone: data.phone, gender: data.gender, password: data.password, email: data.email, username: data.username}, {headers: this.headers, responseType: 'json'});
     }
 
 

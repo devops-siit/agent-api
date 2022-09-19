@@ -1,5 +1,7 @@
 package com.dislinkt.agentapi.domain.rate;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,9 +19,12 @@ import com.dislinkt.agentapi.domain.base.BaseEntity;
 import com.dislinkt.agentapi.domain.company.Company;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueRates", columnNames = { "account_id", "company_id" }) })
 public class Rate extends BaseEntity {
