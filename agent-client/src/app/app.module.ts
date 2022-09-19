@@ -14,13 +14,19 @@ import { NavbarUserComponent } from './components/navbar/navbar-user/navbar-user
 import { SharedModule } from './components/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CompanyRequestComponent } from './components/company/company-request/company-request.component';
+import { AllCompaniesComponent } from './components/company/all-companies/all-companies.component';
+import { OneCompanyComponent } from './components/company/one-company/one-company.component';
+import { NewCommentComponent } from './components/comment/new-comment/new-comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarNonAuthComponent,
     NavbarUserComponent,
-    CompanyRequestComponent
+    CompanyRequestComponent,
+    AllCompaniesComponent,
+    OneCompanyComponent,
+    NewCommentComponent
   ],
   imports: [
     AppRoutingModule,

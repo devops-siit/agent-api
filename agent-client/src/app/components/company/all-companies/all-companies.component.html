@@ -1,0 +1,60 @@
+<div class="collum" tyle="text-align:center">
+
+    <div class="row" style="align-self: center;" >
+      <div *ngIf="this.companies?.length === 0 ">
+        <p>There is no company to show!</p>
+      </div>
+  
+      <div style="max-width: 55rem;" class="card  col-md-4 offer-card" *ngFor="let company of companies; index as i; first as isFirst">
+  
+        <div  class="card h-100 offer-card-inside">
+          <div  class="card-header" style="text-align: center;">
+            <p style="margin-top: 2px; color: yellow;">{{ company.owner.name }}</p>
+  
+          </div>
+  
+         
+          <div class="card-body">
+            <h4 class="card-title">
+              <div class="link">
+                <button style="color:blue;font-size: 26px;" mat-button (click)="openCompany(company.uuid)" >{{company.name}}</button>
+              </div>
+            </h4>
+  
+            <hr style="border-top: 2px solid blue;">
+          </div>
+          <br>
+          <p class="card-text" style="margin-left: 5px;">About company:</p>
+          <div class="card-body" > <!--*ngFor="let pre of offer.prerequisites"-->
+              
+                <div style="margin-left: 15px;font-size:5 ;" class="link">
+                  {{ company.description }}
+                </div>
+              
+    
+            </div>
+            <br><br><br>
+            <div style=" background-color:rgb(37, 150, 190,0.3)" class="card-footer">
+              <small style="margin-left: 5px;margin-bottom:30px;"class="text-muted">{{company.address}}</small>
+            </div>
+            <div style=" background-color:rgb(37, 150, 190,0.3)" class="card-footer">
+                <small style="margin-left: 5px;margin-bottom:30px;"class="text-muted">{{company.phone}}</small>
+              </div>
+  
+
+  
+        </div>
+        <br>
+      </div>
+    </div>
+  
+    <!--  <mat-paginator [length]="length"
+                 [pageSize]="pageSize"
+                 (page)="pageEvent = $event"
+                 aria-label="Select page">
+  </mat-paginator> 
+  -->
+   
+  
+  </div>
+  

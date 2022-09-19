@@ -1,0 +1,13 @@
+<form class="reactiveForm"  [formGroup]="commentForm" (ngSubmit)="sendComment()">
+    <div>
+      <img style="height: 40px; width: 40px;" class="image" mat-card-image src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg" alt="photo">
+    <mat-form-field appearance="fill">
+      <mat-label>Comment post</mat-label>
+      <textarea matInput formControlName="commentText"></textarea>
+    </mat-form-field>
+    <mat-dialog-actions >
+      <button type="submit" mat-raised-button color="success" >Send</button>
+      <button  mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+    </mat-dialog-actions>
+  </div>
+  </form>

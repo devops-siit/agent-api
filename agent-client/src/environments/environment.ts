@@ -12,8 +12,8 @@ export const environment = {
   changePassword: 'auth/change-password',
   agentUrl: 'http://localhost:8089',
   companyReq: 'company-request',
-  authUrl: 'http://localhost:8181',
-
+  rate:'/rates',
+  comment: 'company-comment',
   user: 'api/user'
 };
 

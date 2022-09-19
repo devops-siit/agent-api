@@ -1,0 +1,41 @@
+<div>
+    <br><br>
+    <table class="styled-table">
+        <tbody>
+            <tr>
+
+               
+              <td>{{company?.name}} </td>
+              <td>{{this.avgRate}} </td>
+
+              <td>{{company?.address}}</td>
+              <td>{{company?.phone}}</td>
+              <td>{{company?.phone}}</td>
+              <td><button style="margin-left: 50px;" (click)="sendComment(this.company?.uuid)" mat-icon-button aria-label="Example icon button with a home icon">
+                <mat-icon>insert_comment</mat-icon>Leave a comment
+              </button>
+            </td>
+            <td>
+            <input placeholder= "Rate" type="number" id="quantity" name="quantity" min="1" max="5">
+            </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <br><br>
+    <ul>
+        <li *ngFor="let c of comments">
+          <header>
+            <h1>{{c.author?.username}}</h1>
+
+
+            <img class="image" mat-card-image src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg" alt="photo">
+          </header>
+          <p>{{c?.text}}</p>
+
+          
+          
+        </li>
+      </ul>
+</div>
