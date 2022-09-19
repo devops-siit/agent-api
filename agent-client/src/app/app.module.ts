@@ -15,6 +15,8 @@ import { SharedModule } from './components/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CompanyRequestComponent } from './components/company/company-request/company-request.component';
 import { AllCompaniesComponent } from './components/company/all-companies/all-companies.component';
+import { OneCompanyComponent } from './components/company/one-company/one-company.component';
+import { NewCommentComponent } from './components/comment/new-comment/new-comment.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AllCompaniesComponent } from './components/company/all-companies/all-co
     NavbarNonAuthComponent,
     NavbarUserComponent,
     CompanyRequestComponent,
-    AllCompaniesComponent
+    AllCompaniesComponent,
+    OneCompanyComponent,
+    NewCommentComponent
   ],
   imports: [
     AppRoutingModule,

@@ -2,7 +2,7 @@
 
     <div class="row" style="align-self: center;" >
       <div *ngIf="this.companies?.length === 0 ">
-        <p>There is no offers to show!</p>
+        <p>There is no company to show!</p>
       </div>
   
       <div style="max-width: 55rem;" class="card  col-md-4 offer-card" *ngFor="let company of companies; index as i; first as isFirst">
