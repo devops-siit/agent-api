@@ -14,10 +14,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Deploy to Heroku
+      - name: Deploy to Heroku API
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: dislinkt-agentapi
           email: quadrition@gmail.com
           dockerfile_directory: agentapi
+      - name: Deploy to Heroku Client
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: dislinkt-agent-client
+          heroku_email: quadrition@gmail.com
+          appdir: agent-client
