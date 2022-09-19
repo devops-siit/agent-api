@@ -38,10 +38,9 @@ public class CompanyRequestResource {
     }
 	
 	@PostMapping
-	private ResponseEntity<CompanyRequestDTO> insertCompanyRequest(@RequestParam String loggedAccountUuid, 
-																@RequestBody NewCompanyRequest companyRequest) {
+	private ResponseEntity<CompanyRequestDTO> insertCompanyRequest(@RequestBody NewCompanyRequest companyRequest) {
 		CompanyRequestDTO created = new CompanyRequestDTO();
-		created = companyRequestService.insertCompanyRequest(companyRequest, loggedAccountUuid);
+		created = companyRequestService.insertCompanyRequest(companyRequest);
 	   	return ReturnResponse.entityCreated(created);
 	}
 	

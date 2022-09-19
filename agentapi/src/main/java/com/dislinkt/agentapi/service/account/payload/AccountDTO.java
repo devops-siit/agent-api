@@ -1,4 +1,4 @@
-package com.dislinkt.agentapi.web.rest.account.payload;
+package com.dislinkt.agentapi.service.account.payload;
 
 import com.dislinkt.agentapi.web.rest.base.BaseDTO;
 

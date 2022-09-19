@@ -3,18 +3,17 @@ package com.dislinkt.agentapi.service.rate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import com.dislinkt.agentapi.domain.account.Account;
 import com.dislinkt.agentapi.domain.company.Company;
-import com.dislinkt.agentapi.domain.company.comment.Comment;
 import com.dislinkt.agentapi.domain.rate.Rate;
 import com.dislinkt.agentapi.repository.RateRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
 import com.dislinkt.agentapi.service.company.CompanyService;
-import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
-import com.dislinkt.agentapi.web.rest.comment.payload.CommentDTO;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.CompanyDTO;
 import com.dislinkt.agentapi.web.rest.rate.payload.NewRateRequest;
 import com.dislinkt.agentapi.web.rest.rate.payload.RateDTO;
@@ -44,11 +43,13 @@ public class RateService {
         return sum/company.getRates().size();
     }
 	
-	public RateDTO insertRate(String loggedAccountUuid, NewRateRequest rateRequest) {
+	public RateDTO insertRate(NewRateRequest rateRequest) {
 
         Company company = companyService.findOneByUuidOrElseThrowException(rateRequest.getCompanyUuid());
 
-        Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 
         Optional<Rate> existing = rateRepository.findOneByAccountIdAndCompanyId(account.getId(), company.getId());
         

@@ -2,24 +2,30 @@ package com.dislinkt.agentapi.service.account;
 
 import java.util.Optional;
 
+import com.dislinkt.agentapi.event.AccountCreatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.stereotype.Service;
 
 import com.dislinkt.agentapi.domain.account.Account;
 import com.dislinkt.agentapi.exception.types.EntityAlreadyExistsException;
 import com.dislinkt.agentapi.exception.types.EntityNotFoundException;
 import com.dislinkt.agentapi.repository.AccountRepository;
-import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 
 @Service
+@EnableBinding(Sink.class)
 public class AccountService {
 	
 	@Autowired
     private AccountRepository accountRepository;
 
-    public AccountDTO insertAccount(AccountDTO accountDTO) {
+    @StreamListener(target = Sink.INPUT)
+    public void insertAccount(AccountCreatedEvent accountCreatedEvent) {
 
-        Optional<Account> accountOrEmpty = accountRepository.findOneByUsername(accountDTO.getUsername());
+        Optional<Account> accountOrEmpty = accountRepository.findOneByUsername(accountCreatedEvent.getUsername());
 
         if (accountOrEmpty.isPresent()) {
             throw new EntityAlreadyExistsException("Account username already exists");
@@ -27,18 +33,23 @@ public class AccountService {
 
         Account account = new Account();
 
-        account.setName(accountDTO.getName());
-        account.setUsername(accountDTO.getUsername());
+        account.setName(accountCreatedEvent.getName());
+        account.setUsername(accountCreatedEvent.getUsername());
 
         accountRepository.save(account);
+    }
 
-        accountDTO.setUuid(account.getUuid());
-
-        return accountDTO;
+    public Optional<Account> findOneByUsername(String username) {
+        return accountRepository.findOneByUsername(username);
     }
 
     public Account findOneByUuidOrElseThrowException(String uuid) {
         return accountRepository.findOneByUuid(uuid).orElseThrow(() ->
+                new EntityNotFoundException("Account not found"));
+    }
+
+    public Account findOneByUsernameOrElseThrowException(String username) {
+        return accountRepository.findOneByUsername(username).orElseThrow(() ->
                 new EntityNotFoundException("Account not found"));
     }
 }
