@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080',
-  login: 'auth/log-in',
-  signUp: 'auth/sign-up',
-  signOut: 'auth/sign-out',
+  authUrl: 'http://localhost:8181',
+  login: 'login',
+  signUp: 'register',
+  signOut: 'sign-out',
   changePassword: 'auth/change-password',
 
   user: 'api/user'
