@@ -79,7 +79,7 @@ public class RateServiceIntegrationTest {
 		
 		Throwable exception = assertThrows(
 				Exception.class, () -> {
-	        		service.insertRate("7c20fb12-40d8-4322-ba33-9c05203868e9", req);
+	        		service.insertRate(req);
 	        		//service.insertRate(req);
 	            }
 	    );

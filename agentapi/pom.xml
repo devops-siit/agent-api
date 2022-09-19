@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.dislinkt</groupId>
 	<artifactId>agentapi</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>agentapi</name>
 	<description>Agent api for dislinkt application</description>
 	<properties>

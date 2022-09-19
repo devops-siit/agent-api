@@ -1,6 +1,8 @@
 package com.dislinkt.agentapi.service.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +13,7 @@ import com.dislinkt.agentapi.domain.company.comment.Comment;
 import com.dislinkt.agentapi.repository.CommentRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
 import com.dislinkt.agentapi.service.company.CompanyService;
-import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.comment.payload.CommentDTO;
 import com.dislinkt.agentapi.web.rest.comment.payload.request.NewCommentRequest;
 
@@ -51,11 +53,13 @@ public class CommentService {
         });
     }
 	
-	public CommentDTO insertComment(String loggedAccountUuid, NewCommentRequest commentRequest) {
+	public CommentDTO insertComment(NewCommentRequest commentRequest) {
 
         Company company = companyService.findOneByUuidOrElseThrowException(commentRequest.getCompanyUuid());
 
-        Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 
         Comment comment = new Comment();
 
