@@ -21,6 +21,7 @@ jobs:
           heroku_app_name: dislinkt-agentapi
           heroku_email: quadrition@gmail.com
           appdir: agentapi
+          justlogin: true
           usedocker: true
       - run: |
           heroku container:login && \
