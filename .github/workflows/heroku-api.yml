@@ -22,4 +22,7 @@ jobs:
           heroku_email: quadrition@gmail.com
           appdir: agentapi
           usedocker: true
-          branch: pr
+      - run: |
+          heroku container:login && \
+          heroku container:push web --app dislinkt-agentapi && \
+          heroku container:release web --app dislinkt-agentapi
