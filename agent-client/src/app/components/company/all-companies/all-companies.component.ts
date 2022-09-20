@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/model/Account';
 import { Company } from 'src/app/model/Company';
 import { Router } from '@angular/router';
+import { CompanyService } from 'src/app/services/company/company.service';
 
 
 
@@ -15,14 +16,16 @@ export class AllCompaniesComponent implements OnInit {
 
   owner: Account =  {"username": "usernme", "name":"ja sam boss"};
   constructor(    private router: Router,
+    private companyService: CompanyService
     ) { }
-  companies = [{"uuid": 1, "name": "Ime kompanije", "address": "Bulevar Oslobodjenja 50, Novi Sad", "phone": "+381 254 558", "description": "Ovo je najjaca kompanija ikada", "owner": this.owner}, 
-   {"uuid":2, "name": "Ime kompanije", "address": "Bulevar Oslobodjenja 50, Novi Sad", "phone": "+381 254 558","description": "Ovo je najjaca kompanija ikada", "owner": this.owner}, 
-   {"uuid": 3, "name": "Ime kompanije", "address": "Bulevar Oslobodjenja 50, Novi Sad","phone": "+381 254 558", "description": "Ovo je najjaca kompanija ikada", "owner": this.owner},
-   {"uuid": 4, "name": "Ime kompanije", "address": "Bulevar Oslobodjenja 50, Novi Sad", "phone": "+381 254 558","description": "Ovo je najjaca kompanija ikada", "owner": this.owner}]
-
+  companies!: Company[]
 
   ngOnInit(): void {
+    this.companyService.getCompanies(0, 10).subscribe(
+      res=>{
+        this.companies = res.body.content as Company[];
+      }
+    )
   }
 
   openCompany(uuid: any){

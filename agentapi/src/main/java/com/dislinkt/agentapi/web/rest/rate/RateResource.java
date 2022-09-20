@@ -32,6 +32,6 @@ public class RateResource {
 	@GetMapping("/{companyUuid}")
     private ResponseEntity<Double> getAverageRate(@PathVariable String companyUuid) {
     	
-        return new ResponseEntity<>(rateService.averageRateByCompany(companyUuid), HttpStatus.OK);
+        return new ResponseEntity<Double>(rateService.averageRateByCompany(companyUuid), HttpStatus.OK);
     }
 }

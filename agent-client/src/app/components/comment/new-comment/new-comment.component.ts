@@ -45,6 +45,7 @@ export class NewCommentComponent implements OnInit {
   sendComment(): void {
     console.log(this.companyUuid);
     //send comment
+
     this.companyService.insertComment({"text": this.commentForm.value.commentText, "companyUuid": this.companyUuid}).subscribe(
       res=>{
         this.toastr.success("Comment added");
@@ -54,12 +55,12 @@ export class NewCommentComponent implements OnInit {
           this.toastr.error("Cannot add comment");
       }
     )
-    this.dialogRef.close();
+    this.dialogRef.close(false);
 
   }
 
   cancel():void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
 }

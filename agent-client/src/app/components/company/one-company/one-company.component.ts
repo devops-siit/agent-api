@@ -36,20 +36,22 @@ export class OneCompanyComponent implements OnInit {
     this.uuid = this.route.snapshot.params.uuid;
     this.companyService.getCompanyByUuid(this.uuid).subscribe(
       res=>{
-        this.company = res.body as Company;
+        this.company = res as Company;
         
       }
     )
 
     this.companyService.getCommentsByCompany(this.uuid, 0, 5).subscribe(
       res=>{
-        this.comments = res.body as Comment[];
+        this.comments = res.content as Comment[];
       }
     )
     this.companyService.getAvgRate(this.uuid).subscribe(
       res=>{
         this.avgRate = res.body;
         
+      }, error=>{
+        console.log(error)
       }
     ) 
   }
@@ -57,10 +59,14 @@ export class OneCompanyComponent implements OnInit {
   
   sendComment(uuid: any): void {
     const dialogRef = this.dialog.open(NewCommentComponent); 
-  //  dialogRef.componentInstance.companyUuid = uuid;
-  //  dialogRef.afterClosed().subscribe(result => {
-  //    console.log(`Dialog result: ${result}`);
-  //  });
+    dialogRef.componentInstance.companyUuid = this.uuid;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        console.log(`Dialog result: ${result}`);
+        window.location.reload();
+    }
+     
+   });
   console.log("comment sent")
 
   }

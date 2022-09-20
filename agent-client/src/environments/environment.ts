@@ -11,11 +11,13 @@ export const environment = {
   signOut: 'sign-out',
   changePassword: 'auth/change-password',
   agentUrl: 'http://localhost:8087/agent',
-  companyReq: 'company-request',
-  rate:'/rates',
-  comment: 'company-comment',
+  
+  companyReq: 'http://localhost:8087/company-request',
+  rate:'http://localhost:8087/rates',
+  comment: 'http://localhost:8087/company-comment',
   user: 'api/user',
   offerUrl:'http://localhost:8087/offers',
+  company: 'http://localhost:8087/companies'
 };
 
 /*

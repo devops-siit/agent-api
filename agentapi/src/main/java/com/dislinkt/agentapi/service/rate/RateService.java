@@ -31,16 +31,17 @@ public class RateService {
 	@Autowired
 	private AccountService accountService;
 	
-	public double averageRateByCompany(String companyUuid) {
+	public Double averageRateByCompany(String companyUuid) {
 
 		Company company = companyService.findOneByUuidOrElseThrowException(companyUuid);
 		int sum = 0;
-		
+		if(company.getRates() == null)
+			return new Double (0);
         for (Rate r: company.getRates()) {
         	sum += r.getRate();
         }
         
-        return sum/company.getRates().size();
+        return new Double( sum/company.getRates().size());
     }
 	
 	public RateDTO insertRate(NewRateRequest rateRequest) {
