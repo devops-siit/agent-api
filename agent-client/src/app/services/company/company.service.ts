@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { User } from '../../model/User';
 import { environment } from 'src/environments/environment';
@@ -50,5 +50,10 @@ rate(data: any): Observable<any> {
 insertComment(data: any):Observable<any> {
   return this.http.post(`${environment.comment}`, data,
     {headers: this.headers, responseType: 'json'});
+}
+
+createOffer(offer:any): Observable<HttpResponse<any>>{
+
+  return this.http.post<any>(`${environment.offerUrl}`, offer, {observe: 'response'})
 }
 }
