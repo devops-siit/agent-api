@@ -45,7 +45,7 @@ public class CompanyRequest extends BaseEntity {
     
     @NotNull
     @Size(max = 128)
-    @Column(unique = true)
+    @Column(unique = false)
     private String requestStatus;
     
     @ManyToOne(fetch = FetchType.LAZY)
