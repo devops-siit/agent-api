@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
 import { LoginPageComponent } from '../components/auth/login-page/login-page.component';
 import { RegistrationComponent } from '../components/auth/registration/registration.component';
+import { AllCompaniesComponent } from '../components/company/all-companies/all-companies.component';
 import { CompanyRequestComponent } from '../components/company/company-request/company-request.component';
+import { OneCompanyComponent } from '../components/company/one-company/one-company.component';
+import { CreateOfferComponent } from '../components/offer/create-offer/create-offer.component';
 import { LoginGuard } from '../guards/login/login.service';
 import { RoleGuard } from '../guards/role/role.service';
+//import { CreateOfferComponent } from '../components/offers/create-offer/create-offer.component';
+
 
 
 export const routes: Routes = [
@@ -21,6 +26,21 @@ export const routes: Routes = [
       path: 'companyReq',
       component: CompanyRequestComponent,
       //canActivate: [LoginGuard] // putanja kojoj moze da pristupi korisnik samo ukoliko NIJE ulogovan
+   },
+
+   {
+      path: 'companies',
+      component: AllCompaniesComponent,
+      //canActivate: [LoginGuard] // putanja kojoj moze da pristupi korisnik samo ukoliko NIJE ulogovan
+   },
+
+   {
+      path: 'company/:uuid',
+      component: OneCompanyComponent,
+   },
+   {
+      path: 'create-offer',
+      component: CreateOfferComponent,
    },
  
     // {

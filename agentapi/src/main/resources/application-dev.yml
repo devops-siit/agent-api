@@ -19,5 +19,8 @@ spring:
       bindings:
         companyRegistrationChannel:
           destination: companyRegistrations
+        input:
+          destination: accountRegistrations
+          group: accountRegistrationAgentQueue
       default:
         contentType: application/json
