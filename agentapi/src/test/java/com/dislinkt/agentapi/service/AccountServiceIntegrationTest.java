@@ -4,6 +4,7 @@ package com.dislinkt.agentapi.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static com.dislinkt.agentapi.constants.AccountConstants.*;
 
+import com.dislinkt.agentapi.event.AccountCreatedEvent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dislinkt.agentapi.domain.account.Account;
 import com.dislinkt.agentapi.service.account.AccountService;
-import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
@@ -57,13 +58,12 @@ public class AccountServiceIntegrationTest {
 //		Account acc = service.findOneByUuidOrElseThrowException(NEW_ACCOUNT_UUID);
 //		assertEquals(acc.getUuid(), event.getUuid());
 		
-		AccountDTO dto = new AccountDTO();
+		AccountCreatedEvent dto = new AccountCreatedEvent();
 		dto.setName(NEW_ACCOUNT_NAME);
 		dto.setUsername(NEW_ACCOUNT_USERNAME);
 		dto.setUuid(NEW_ACCOUNT_UUID);
 		
-		AccountDTO acc = service.insertAccount(dto);
-		assertEquals(dto.getUuid(), acc.getUuid());
+		service.insertAccount(dto);
     }
 	
 	

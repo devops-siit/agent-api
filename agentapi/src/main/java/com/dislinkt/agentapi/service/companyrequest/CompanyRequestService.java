@@ -3,6 +3,8 @@ package com.dislinkt.agentapi.service.companyrequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import com.dislinkt.agentapi.domain.account.Account;
@@ -10,7 +12,7 @@ import com.dislinkt.agentapi.domain.company.request.CompanyRequest;
 import com.dislinkt.agentapi.exception.types.EntityNotFoundException;
 import com.dislinkt.agentapi.repository.CompanyRequestRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
-import com.dislinkt.agentapi.web.rest.account.payload.AccountDTO;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.request.NewCompanyRequest;
 
@@ -27,9 +29,11 @@ public class CompanyRequestService {
         return repository.findOneByUuid(uuid).orElseThrow(() -> new EntityNotFoundException("Company request not found"));
     }
 	
-	public CompanyRequestDTO insertCompanyRequest(NewCompanyRequest req, String loggedAccountUuid) {
-		
-		Account account = accountService.findOneByUuidOrElseThrowException(loggedAccountUuid);
+	public CompanyRequestDTO insertCompanyRequest(NewCompanyRequest req) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		Account account = accountService.findOneByUsernameOrElseThrowException(user.getUsername());
 		
 		CompanyRequest newReq = new CompanyRequest();
 		newReq.setName(req.getName());

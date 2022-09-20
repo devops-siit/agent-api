@@ -24,9 +24,9 @@ public class RateResource {
 	private RateService rateService;
 
 	@PostMapping
-    private ResponseEntity<RateDTO> insertRate(@RequestParam String loggedAccountUuid, @RequestBody NewRateRequest rateRequest) {
+    private ResponseEntity<RateDTO> insertRate(@RequestBody NewRateRequest rateRequest) {
     	
-        return ReturnResponse.entityCreated(rateService.insertRate(loggedAccountUuid, rateRequest));
+        return ReturnResponse.entityCreated(rateService.insertRate(rateRequest));
     }
 	
 	@GetMapping("/{companyUuid}")

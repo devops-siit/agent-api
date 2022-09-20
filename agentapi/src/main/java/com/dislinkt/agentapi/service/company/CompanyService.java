@@ -3,8 +3,11 @@ package com.dislinkt.agentapi.service.company;
 import java.util.Optional;
 
 import com.dislinkt.agentapi.event.CompanyRegistrationSource;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import com.dislinkt.agentapi.exception.types.EntityAlreadyExistsException;
 import com.dislinkt.agentapi.exception.types.EntityNotFoundException;
 import com.dislinkt.agentapi.repository.CompanyRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.CompanyDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.SimpleCompanyDTO;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
@@ -88,5 +92,42 @@ public class CompanyService {
         return companyRepository.findOneByUuid(uuid).orElseThrow(() ->
                 new EntityNotFoundException("Company not found"));
     }
+
+	public Page<CompanyDTO> findAll(Pageable pageable) {
+		return companyRepository.findAll(pageable).map(company -> {
+
+			CompanyDTO dto = new CompanyDTO();
+			dto.setName(company.getName());
+			dto.setAddress(company.getAddress());
+			dto.setDescription(company.getDescription());
+			dto.setPhone(company.getPhone());
+			dto.setUuid(company.getUuid());
+
+			AccountDTO accountDTO = new AccountDTO();
+			accountDTO.setUsername(company.getOwner().getUsername());
+			accountDTO.setName(company.getOwner().getName());
+			accountDTO.setUuid(company.getOwner().getUuid());
+
+			dto.setOwner(accountDTO);
+			return dto;
+		});
+	}
+    
+    
 	
+	public CompanyDTO findOneByUuid(String uuid){
+		Company company = findOneByUuidOrElseThrowException(uuid);
+		CompanyDTO dto = new CompanyDTO();
+		AccountDTO accDTO = new AccountDTO();
+		accDTO.setName(company.getOwner().getName());
+		accDTO.setUsername(company.getOwner().getUsername());
+		accDTO.setUuid(company.getOwner().getUuid());
+		dto.setOwner(accDTO);
+		dto.setName(company.getName());
+		dto.setPhone(company.getPhone());
+		dto.setAddress(company.getAddress());
+		dto.setDescription(company.getDescription());
+		dto.setUuid(company.getUuid());
+		return dto;
+	}
 }
