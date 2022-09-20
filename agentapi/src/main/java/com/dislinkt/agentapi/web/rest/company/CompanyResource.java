@@ -38,8 +38,8 @@ public class CompanyResource {
         return ReturnResponse.entityCreated(c);
     }
     
-    @GetMapping
-    private  ResponseEntity<CompanyDTO> getOne(@RequestBody String uuid){
+    @GetMapping("/{uuid}")
+    private  ResponseEntity<CompanyDTO> getOne(@PathVariable String uuid){
     	CompanyDTO dto = companyService.findOneByUuid(uuid);
     	return new ResponseEntity<>(dto, HttpStatus.OK);
     }
