@@ -1,20 +1,23 @@
-name: Deploy
+name: Deploy API to Heroku
 
 on:
   push:
     branches: ["develop"]
     # Publish semver tags as releases.
     tags: ["v*.*.*"]
+  pull_request:
+    branches: ["develop"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Deploy to Heroku API
+        uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: dislinkt-agent-api
-          heroku_email: quadrition@gmail.com
-          appdir: agentapi
-          usedocker: true
+          heroku_app_name: dislinkt-agentapi
+          email: quadrition@gmail.com
+          dockerfile_directory: agentapi
