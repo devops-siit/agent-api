@@ -19,6 +19,7 @@ import com.dislinkt.agentapi.exception.types.EntityAlreadyExistsException;
 import com.dislinkt.agentapi.exception.types.EntityNotFoundException;
 import com.dislinkt.agentapi.repository.CompanyRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.CompanyDTO;
 import com.dislinkt.agentapi.web.rest.company.payload.SimpleCompanyDTO;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
@@ -111,5 +112,22 @@ public class CompanyService {
 			return dto;
 		});
 	}
+    
+    
 	
+	public CompanyDTO findOneByUuid(String uuid){
+		Company company = findOneByUuidOrElseThrowException(uuid);
+		CompanyDTO dto = new CompanyDTO();
+		AccountDTO accDTO = new AccountDTO();
+		accDTO.setName(company.getOwner().getName());
+		accDTO.setUsername(company.getOwner().getUsername());
+		accDTO.setUuid(company.getOwner().getUuid());
+		dto.setOwner(accDTO);
+		dto.setName(company.getName());
+		dto.setPhone(company.getPhone());
+		dto.setAddress(company.getAddress());
+		dto.setDescription(company.getDescription());
+		dto.setUuid(company.getUuid());
+		return dto;
+	}
 }
