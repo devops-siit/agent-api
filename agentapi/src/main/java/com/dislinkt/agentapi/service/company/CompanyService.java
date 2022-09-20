@@ -3,8 +3,11 @@ package com.dislinkt.agentapi.service.company;
 import java.util.Optional;
 
 import com.dislinkt.agentapi.event.CompanyRegistrationSource;
+import com.dislinkt.agentapi.service.account.payload.AccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,5 +91,25 @@ public class CompanyService {
         return companyRepository.findOneByUuid(uuid).orElseThrow(() ->
                 new EntityNotFoundException("Company not found"));
     }
+
+	public Page<CompanyDTO> findAll(Pageable pageable) {
+		return companyRepository.findAll(pageable).map(company -> {
+
+			CompanyDTO dto = new CompanyDTO();
+			dto.setName(company.getName());
+			dto.setAddress(company.getAddress());
+			dto.setDescription(company.getDescription());
+			dto.setPhone(company.getPhone());
+			dto.setUuid(company.getUuid());
+
+			AccountDTO accountDTO = new AccountDTO();
+			accountDTO.setUsername(company.getOwner().getUsername());
+			accountDTO.setName(company.getOwner().getName());
+			accountDTO.setUuid(company.getOwner().getUuid());
+
+			dto.setOwner(accountDTO);
+			return dto;
+		});
+	}
 	
 }
