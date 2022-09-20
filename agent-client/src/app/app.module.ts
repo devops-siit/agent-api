@@ -17,6 +17,7 @@ import { CompanyRequestComponent } from './components/company/company-request/co
 import { AllCompaniesComponent } from './components/company/all-companies/all-companies.component';
 import { OneCompanyComponent } from './components/company/one-company/one-company.component';
 import { NewCommentComponent } from './components/comment/new-comment/new-comment.component';
+import { CreateOfferComponent } from './components/offer/create-offer/create-offer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NewCommentComponent } from './components/comment/new-comment/new-commen
     CompanyRequestComponent,
     AllCompaniesComponent,
     OneCompanyComponent,
-    NewCommentComponent
+    NewCommentComponent,
+    CreateOfferComponent
   ],
   imports: [
     AppRoutingModule,

@@ -10,11 +10,12 @@ export const environment = {
   signUp: 'register',
   signOut: 'sign-out',
   changePassword: 'auth/change-password',
-  agentUrl: 'http://localhost:8089',
+  agentUrl: 'http://localhost:8087/agent',
   companyReq: 'company-request',
   rate:'/rates',
   comment: 'company-comment',
-  user: 'api/user'
+  user: 'api/user',
+  offerUrl:'http://localhost:8087/offers',
 };
 
 /*
