@@ -1,0 +1,26 @@
+<div>
+    <br><br>
+
+    <div *ngFor="let p of requests">
+        <br><br>
+        <table  class="styled-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Company Name: </td>
+                    <td>{{p?.name}}</td>
+                </tr>
+                <tr>
+                <td><button mat-raised-button color="primary"  (click)="accept(p.uuid)" >Accept</button></td>
+                <td><button mat-raised-button color="warn" (click)="decline(p.uuid)" >Reject</button></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

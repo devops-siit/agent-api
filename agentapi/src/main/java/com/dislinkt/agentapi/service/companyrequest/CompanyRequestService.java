@@ -13,6 +13,7 @@ import com.dislinkt.agentapi.exception.types.EntityNotFoundException;
 import com.dislinkt.agentapi.repository.CompanyRequestRepository;
 import com.dislinkt.agentapi.service.account.AccountService;
 import com.dislinkt.agentapi.service.account.payload.AccountDTO;
+import com.dislinkt.agentapi.service.company.CompanyService;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.CompanyRequestDTO;
 import com.dislinkt.agentapi.web.rest.companyrequest.payload.request.NewCompanyRequest;
 
@@ -21,6 +22,9 @@ public class CompanyRequestService {
 
 	@Autowired
 	private CompanyRequestRepository repository;
+	
+	@Autowired
+	private CompanyService companyService;
 	
 	@Autowired
 	private AccountService accountService;
@@ -69,6 +73,7 @@ public class CompanyRequestService {
 		
 		repository.save(req);
 		
+		
 		CompanyRequestDTO reqDTO = new CompanyRequestDTO();
 		reqDTO.setName(req.getName());
 		reqDTO.setAddress(req.getAddress());
@@ -82,6 +87,7 @@ public class CompanyRequestService {
 		acc.setUsername(req.getOwner().getUsername());
 		acc.setUuid(req.getOwner().getUuid());
 		reqDTO.setOwner(acc);
+		companyService.insertCompany(reqDTO);
 		
 		return reqDTO;
 	}

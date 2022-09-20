@@ -11,7 +11,7 @@ export class Interceptor implements HttpInterceptor {
         if (item) {
             const decodedItem = JSON.parse(item);
             const cloned = req.clone({
-                headers: req.headers.set('Authorization', 'Bearer ' + decodedItem.accessToken)
+                headers: req.headers.set('Authorization', 'Bearer ' + decodedItem.token)
             });
             return next.handle(cloned);
         } else {

@@ -10,19 +10,19 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AppComponent {
   title = 'Github';
-  public role!: string| undefined;
-
+  public logged!: boolean;
   constructor(private router: Router) {}
 
   checkRole(): void {
     const item = localStorage.getItem('user');
 
-    if (!item) {
-        this.role = undefined;
+    if (item) {
+        this.logged = true;
         return;
     }
-
-    const jwt: JwtHelperService = new JwtHelperService();
-    this.role = jwt.decodeToken(item).role;
+    else{
+      this.logged = false;
+      return;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { LoginPageComponent } from '../components/auth/login-page/login-page.com
 import { RegistrationComponent } from '../components/auth/registration/registration.component';
 import { AllCompaniesComponent } from '../components/company/all-companies/all-companies.component';
 import { CompanyRequestComponent } from '../components/company/company-request/company-request.component';
+import { CompanyRequestsComponent } from '../components/company/company-requests/company-requests.component';
 import { OneCompanyComponent } from '../components/company/one-company/one-company.component';
 import { CreateOfferComponent } from '../components/offer/create-offer/create-offer.component';
 import { LoginGuard } from '../guards/login/login.service';
@@ -42,6 +43,10 @@ export const routes: Routes = [
       path: 'create-offer',
       component: CreateOfferComponent,
    },
+   {
+      path: 'company-requests',
+      component: CompanyRequestsComponent,
+   }
  
     // {
     // putanja kojoj moze da pristupi samo registrivani korisnik sa konkretnom ulogom
